@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulkadir Duran Adan - AI Engineer & Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: white;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --header-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+            --header-text: white;
+            --footer-bg: var(--dark);
+            --footer-text: white;
+            --border-color: #eee;
+        }
+
+        [data-theme="dark"] {
+            --primary: #34495e;
+            --secondary: #2980b9;
+            --accent: #c0392b;
+            --light: #2c3e50;
+            --dark: #1a252f;
+            --gray: #95a5a6;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --header-bg: linear-gradient(135deg, #1a252f, #2c3e50);
+            --header-text: #e0e0e0;
+            --footer-bg: #1a252f;
+            --footer-text: #e0e0e0;
+            --border-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .profile-picture {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .profile-picture i {
+            font-size: 80px;
+            color: #aaa;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+        
+        section {
+            background: var(--card-bg);
+            margin: 8px 0;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .summary p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .education-item, .experience-item, .project-item, .publication-item, .award-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .education-item:last-child, .experience-item:last-child, .project-item:last-child, 
+        .publication-item:last-child, .award-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        
+        .item-date {
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .item-subtitle {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .item-description {
+            margin-top: 10px;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+            box-shadow: var(--shadow);
+            padding: 16px;
+
+            
+        }
+        .interest-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .interest-container h3 {
+            
+            color: var(--primary);
+            border-bottom: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            border-left: 2px solid var(--border-color);
+            text-align: center;
+            padding: 0 16px;
+            /* background: var(--light); */
+            border-radius: 8px;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            text-align: center;
+            
+        }
+        
+        .skill-list {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .skill-tag:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .publication-type {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .publication-details {
+            font-style: italic;
+            margin: 5px 0;
+        }
+        
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: var(--footer-text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .theme-toggle{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+       
+
+        .download-cv-btn:hover {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .item-header {
+                flex-direction: column;
+            }
+            
+            .item-date {
+                margin-top: 5px;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .theme-toggle i {
+                font-size: 1.2rem;
+            }
+        }
+        .download-cv-btn{
+            position: fixed;
+            right: 1%;
+            background-color: #007bff;
+            color: #fff;
+            top: 90%;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-picture">
+                    <img src="WechatIMG362 copy.jpg" alt="">
+                </div>
+                <div class="profile-info">
+                    <h1>Abdulkadir Duran Adan 阿丹</h1>
+                    <h2>AI Engineer & Researcher</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>abdulkadir.duran2022@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(+86) 131 82767681</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Wuhan, China</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>An AI researcher and software developer with hands-on experience in deep learning, machine learning and web Development. Proven ability to design, implement, and deploy scalable AI models for real-world applications. 
+                Seeking to contribute to innovative AI projects in a challenging academic and industry role.</p>
+        </section>
+
+        <section class="education">
+            <h2>Education and Training</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">Huazhong University of Science and Technology</div>
+                    <div class="item-date">Sep 2023 – July 2025</div>
+                </div>
+                <div class="item-subtitle">Master's in Artificial Intelligence | GPA: 3.7/4.0</div>
+                <div class="item-subtitle">Wuhan, China</div>
+                <div class="item-description">
+                    <strong>Thesis:</strong> Plant-Agnostic Counting in Somalia Using Vision Transformers
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">Jiangnan University</div>
+                    <div class="item-date">Sep 2019 – Jul 2023</div>
+                </div>
+                <div class="item-subtitle">Bachelor in Computer Science | GPA: 3.5/4.0</div>
+                <div class="item-subtitle">Wuxi, China</div>
+                <div class="item-description">
+                    <strong>Thesis:</strong> Heart Disease prediction using Machine learning
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="item-header">
+                    <div class="item-title">Tsinghua University</div>
+                    <div class="item-date">Oct 2022 – Nov 2022</div>
+                </div>
+                <div class="item-subtitle">Innovating Education for the Digital Economy</div>
+                <div class="item-subtitle">Beijing, China</div>
+                <div class="item-description">
+                    <strong>Project:</strong> AI's impact on e-commerce and digital Technologies
+                </div>
+            </div>
+        </section>
+        <section class="skills">
+            <h2>Research Interest</h2>
+            <div class="interest-container">
+                
+                    <h3>Deep Learning</h3>
+                    
+                
+                
+                
+                    <h3>Computer Vision</h3>
+                    
+                
+                
+                
+                    <h3>Artificial  Intelligence</h3>
+                
+                
+                
+                    <h3>Multi-view Multi-dimensional 3D Technology</h3>
+                    
+                   
+            </div>
+        </section>
+        <section class="skills">
+            <h2>Teaching Interest</h2>
+            <div class="interest-container">
+                    <h3>Python</h3>
+                    <h3>Machine Learning</h3>
+                    <h3>Artificial  Intelligence</h3>
+                    <h3>Web Development</h3>
+                    <h3>Data structure and Algorithms</h3>
+                    <h3>Advanced Mathematics | Discrete Mathematics | Probability & Statistics</h3>
+                    
+            </div>
+        </section>
+
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">JavaScript</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">PostgreSQL</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Deep Learning Frameworks</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">OpenCV</div>
+                        <div class="skill-tag">PyTorch</div>
+                        <div class="skill-tag">Numpy</div>
+                        <div class="skill-tag">Pandas</div>
+                        <div class="skill-tag">Matplotlib</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">Django</div>
+                        <div class="skill-tag">HTML5</div>
+                        <div class="skill-tag">CSS3</div>
+                        <div class="skill-tag">Bootstrap</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">Git & GitHub</div>
+                        <div class="skill-tag">Google Colab</div>
+                        <div class="skill-tag">VS Code</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience">
+            <h2>Professional Experience & Projects</h2>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div class="item-title">Independent Researcher|  Wuhan Optical Lab, Huazhong University of Science and Technology</div>
+                    <div class="item-date">Sep 2025 – Present</div>
+                </div>
+                <div class="item-description">
+                    <p>Co-authoring a research paper, "Multi-Dimensional Multi-view Vision Transformers for Computational Imaging: : A Unified Framework for 3D Reconstruction, Depth Estimation" under Professor You Yang, Vice Dean of the School of Electronic Information and Communications.
+                    </p>
+
+                      
+                    
+                    
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div class="item-title">Master's student & Researcher | Huazhong University of Science and Technology</div>
+                    <div class="item-date">Sep 2023 – July 2025</div>
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>Co-authored to TasselNetV4, a vision foundation model for cross-species and cross-scene plant counting:
+                             A Vision Transformer model for robust, scalable agricultural AI applications.</li>
+                    </ul>
+                    
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li>Co-authored Chinese patent</li>
+                    </ul>
+                    
+                </div>
+                <div class="item-description">
+                    <ul>
+                        <li> Created Enhanced Autonomous Cars' Intelligence project Using Deep Reinforcement Learning: a method for safely navigating Self-driving cars in highway scenarios using a combination of deep Q Networks and neural networks</li>
+                    </ul>
+                    
+                </div>
+                
+                <div class="item-description">
+                    <ul>
+                        <li>Developed a facial recognition system for automated attendance tracking in educational institutions, using computer vision techniques.</li>
+                    </ul>
+                    
+                </div>
+            </div>
+        
+            
+            
+        </section>
+
+        <section class="publications">
+            <h2>Publications</h2>
+            <div class="publication-item">
+                <div class="publication-type">Patent</div>
+                <div class="item-description">
+                    [1] Adan AD, L. Lu, H. Xu, X. Hu, X. Li, X. Li, and T. Hu, "一种融合种类关键信物计算方法和系统," <em>Chinese Patent</em> CN120725894A, Sep. 30, 2025.
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-type">Paper</div>
+                <div class="item-description">
+                    [1] Hu X, Li X, Xu J, Adan AD, Zhou L, Zhu X, Li Y, Guo W, Liu S, Liu W, Lu H.
+                    TasselNetV4: A vision foundation model for cross-scene, cross-scale, and cross-species plant counting. arXiv preprint arXiv:2509.20857. 2025 Sep 25.
+                </div>
+            </div>
+        </section>
+
+        <section class="awards">
+            <h2>Honors and Awards</h2>
+            <div class="award-item">
+                <div class="item-title">Chinese Government Scholarship</div>
+                <div class="item-subtitle">Huazhong University of Science and Technology (2023)</div>
+            </div>
+            
+            <div class="award-item">
+                <div class="item-title">Scientific Research Star Certificate</div>
+                <div class="item-subtitle">Jiangnan University (2022)</div>
+            </div>
+            
+            <div class="award-item">
+                <div class="item-title">Innovation & Entrepreneurship Program Certificate</div>
+                <div class="item-subtitle">Tsinghua University (2022)</div>
+            </div>
+            
+            <div class="award-item">
+                <div class="item-title">International Student Admissions Ambassador Certificate</div>
+                <div class="item-subtitle">Jiangnan University (2021)</div>
+            </div>
+            
+            <div class="award-item">
+                <div class="item-title">Outstanding Volunteer Certificate</div>
+                <div class="item-subtitle">Jiangnan University (2021)</div>
+            </div>
+            
+            <div class="award-item">
+                <div class="item-title">Gongtiecheng Scholarship Certificate</div>
+                <div class="item-subtitle">Jiangnan University (2020)</div>
+            </div>
+        </section>
+    </div>
+    <div class="cv">
+        <a href="academic_CV.pdf" download=""> 
+            <button type="button" class="download-cv-btn"><i class="fas fa-download"></i> CV</button>
+        </a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Abdulkadir Duran Adan. All Rights Reserved.</p>
+            <div class="social-links">
+                
+                    
+                </a>
+                <a href="https://www.linkedin.com/in/abdulkadir-duran-adan-52baa9390/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/AbdulkadirDuran/"><i class="fab fa-github"></i></a>
+                
+                <a href="#"><i class="fab fa-researchgate"></i></a>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference, default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Set initial theme to light
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Toggle theme
+        themeToggle.addEventListener('click', function() {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                // Switch to light mode
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark mode
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Add interactivity to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation (if added in the future)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+    </script>
+    
+</body>
+</html>
